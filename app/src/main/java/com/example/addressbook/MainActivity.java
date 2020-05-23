@@ -3,19 +3,22 @@ package com.example.addressbook;
 import android.database.Cursor;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.Navigation;
 
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,23 +28,40 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        // ListView
+        final ListView list = findViewById(R.id.list);
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("JAVA");
+        arrayList.add("ANDROID");
+        arrayList.add("C Language");
+        arrayList.add("CPP Language");
+        arrayList.add("Go Language");
+        arrayList.add("AVN SYSTEMS");
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, arrayList);
+        list.setAdapter(arrayAdapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                String clickedItem=(String) list.getItemAtPosition(position);
+//                Toast.makeText(MainActivity.this,clickedItem,Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+        // Add FAB
+
+        final FloatingActionButton fab = findViewById(R.id.add_button);
 
         fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        NavHostFragment.findNavController(null)
-                                .navigate(R.id.action_FirstFragment_to_SecondFragment);
-                    }
-                });
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });
 
@@ -50,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
         myDb = new AdressBookDb(this);
 
-        AddData();
-        viewAll();
+        //AddData();
+        //viewAll();
     }
 
     public  void AddData() {
