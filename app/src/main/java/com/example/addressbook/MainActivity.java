@@ -2,23 +2,16 @@ package com.example.addressbook;
 
 import android.database.Cursor;
 import android.os.Bundle;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.navigation.Navigation;
 
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,40 +26,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        // ListView
-        final ListView list = findViewById(R.id.list);
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("JAVA");
-        arrayList.add("ANDROID");
-        arrayList.add("C Language");
-        arrayList.add("CPP Language");
-        arrayList.add("Go Language");
-        arrayList.add("AVN SYSTEMS");
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, arrayList);
-        list.setAdapter(arrayAdapter);
-
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                String clickedItem=(String) list.getItemAtPosition(position);
-//                Toast.makeText(MainActivity.this,clickedItem,Toast.LENGTH_LONG).show();
-            }
-        });
-
-
-        // Add FAB
-
-        final FloatingActionButton fab = findViewById(R.id.add_button);
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.action_FirstFragment_to_SecondFragment);
-            }
-        });
-
-        //btnAddData = (Button)findViewById(R.id.button_add);
-        //btnviewAll = (Button)findViewById(R.id.button_viewAll);
 
         myDb = new AdressBookDb(this);
 
