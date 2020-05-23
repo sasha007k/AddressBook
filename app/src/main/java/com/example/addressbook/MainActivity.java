@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
 
         myDb = new AdressBookDb(this);
 
-        AddData();
-        viewAll();
+        //AddData();
+        //viewAll();
     }
 
     public  void AddData() {
