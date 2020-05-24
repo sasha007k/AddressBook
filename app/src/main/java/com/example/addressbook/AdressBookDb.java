@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class AdressBookDb extends SQLiteOpenHelper {
+
     public static final String DATABASE_NAME = "AdressBook.db";
     public static final String TABLE_NAME = "Contacts";
     public static final String COL_2 = "Name";

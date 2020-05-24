@@ -29,15 +29,16 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        final FloatingActionButton fab = view.findViewById(R.id.add_button);
+        // Floating Action Button
 
+        final FloatingActionButton fab = view.findViewById(R.id.add_button);
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Navigation.findNavController(v).navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });
 
-        // ListView
+        // Contacts ListView
         final ListView list = view.findViewById(R.id.list);
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("JAVA");
@@ -53,8 +54,7 @@ public class FirstFragment extends Fragment {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                String clickedItem=(String) list.getItemAtPosition(position);
-//                Toast.makeText(MainActivity.this,clickedItem,Toast.LENGTH_LONG).show();
+                Navigation.findNavController(view).navigate(R.id.action_FirstFragment_to_ContactDetails);
             }
         });
     }
