@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SecondFragment">
+    tools:context=".AddContact">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -78,8 +78,10 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save"
-            android:onClick="Save" />
+            android:background="#298154"
+            android:backgroundTint="#4FBD6B"
+            android:onClick="Save"
+            android:text="Save" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

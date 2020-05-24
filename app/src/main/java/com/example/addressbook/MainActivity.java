@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    AdressBookDb myDb;
+    AddressBookDb myDb;
     Button btnAddData;
     Button btnviewAll;
 
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        myDb = new AdressBookDb(this);
+        myDb = new AddressBookDb(this);
 
         //AddData();
         //viewAll();

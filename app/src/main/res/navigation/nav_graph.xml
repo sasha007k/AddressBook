@@ -3,28 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/ContactsList">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.addressbook.FirstFragment"
+        android:id="@+id/ContactsList"
+        android:name="com.example.addressbook.ContactsList"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first" >
+        tools:layout="@layout/fragment_contacts_list" >
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_ContactsList_to_AddContact"
+            app:destination="@id/AddContact" />
 
         <action
-            android:id="@+id/action_FirstFragment_to_ContactDetails"
+            android:id="@+id/action_ContactsList_to_ContactDetails"
             app:destination="@id/ContactDetails" />
 
     </fragment>
+
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.addressbook.SecondFragment"
+        android:id="@+id/AddContact"
+        android:name="com.example.addressbook.AddContact"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second" >
+        tools:layout="@layout/fragment_add_contact" >
+
+        <action
+            android:id="@+id/action_AddContact_to_ContactsList"
+            app:destination="@id/ContactsList" />
 
     </fragment>
 
@@ -32,6 +37,10 @@
         android:id="@+id/ContactDetails"
         android:name="com.example.addressbook.ContactDetails"
         tools:layout="@layout/fragment_contact_details" >
+
+        <action
+            android:id="@+id/action_ContactDetails_to_ContactsList"
+            app:destination="@id/ContactsList" />
 
     </fragment>
 </navigation>

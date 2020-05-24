@@ -8,9 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-public class AdressBookDb extends SQLiteOpenHelper {
+public class AddressBookDb extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "AdressBook.db";
+    public static final String DATABASE_NAME = "AddressBook.db";
     public static final String TABLE_NAME = "Contacts";
     public static final String COL_2 = "Name";
     public static final String COL_3 = "Phone";
@@ -20,7 +20,7 @@ public class AdressBookDb extends SQLiteOpenHelper {
     public static final String COL_7 = "State";
     public static final String COL_8 = "Zip";
 
-    public AdressBookDb(@Nullable Context context) {
+    public AddressBookDb(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
 
@@ -86,8 +86,8 @@ public class AdressBookDb extends SQLiteOpenHelper {
                 COL_2
         };
 
-        String sortOrder =
-                COL_2 + " DESC";
+
+        String sortOrder = COL_2 + " COLLATE LOCALIZED ASC";
 
         Cursor cursor = db.query(
                 TABLE_NAME,

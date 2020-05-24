@@ -1,5 +1,6 @@
 package com.example.addressbook;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,14 +17,18 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class FirstFragment extends Fragment {
+public class ContactsList extends Fragment {
+
+    AddressBookDb db;
 
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_first, container, false);
+        db = new AddressBookDb(getActivity());
+
+        return inflater.inflate(R.layout.fragment_contacts_list, container, false);
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -34,19 +39,22 @@ public class FirstFragment extends Fragment {
         final FloatingActionButton fab = view.findViewById(R.id.add_button);
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.action_FirstFragment_to_SecondFragment);
+                Navigation.findNavController(v).navigate(R.id.action_ContactsList_to_AddContact);
             }
         });
+
+        Cursor cursor = db.getSortedByName();
 
         // Contacts ListView
         final ListView list = view.findViewById(R.id.list);
         ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("JAVA");
-        arrayList.add("ANDROID");
-        arrayList.add("C Language");
-        arrayList.add("CPP Language");
-        arrayList.add("Go Language");
-        arrayList.add("AVN SYSTEMS");
+
+        if (cursor.moveToFirst() && cursor.getCount() > 0){
+            do {
+                arrayList.add(cursor.getString(cursor.getColumnIndex("NAME")));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, arrayList);
         list.setAdapter(arrayAdapter);
@@ -54,7 +62,7 @@ public class FirstFragment extends Fragment {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Navigation.findNavController(view).navigate(R.id.action_FirstFragment_to_ContactDetails);
+                Navigation.findNavController(view).navigate(R.id.action_ContactsList_to_ContactDetails);
             }
         });
     }
