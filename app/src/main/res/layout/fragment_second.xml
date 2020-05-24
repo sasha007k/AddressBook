@@ -7,9 +7,14 @@
     tools:context=".SecondFragment">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/name"
@@ -26,48 +31,48 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:ems="10"
-            android:inputType="phone"
-            android:hint="Phone"/>
+            android:hint="Phone"
+            android:inputType="phone" />
 
         <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:ems="10"
-            android:inputType="textEmailAddress"
-            android:hint="Email"/>
+            android:hint="Email"
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/street"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Street"/>
+            android:hint="Street"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/city"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="City"/>
+            android:hint="City"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/state"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="State"/>
+            android:hint="State"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/zip"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:ems="10"
-            android:inputType="number"
-            android:hint="Zip"/>
+            android:hint="Zip"
+            android:inputType="number" />
 
         <Button
             android:id="@+id/button"

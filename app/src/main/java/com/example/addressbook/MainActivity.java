@@ -2,14 +2,10 @@ package com.example.addressbook;
 
 import android.database.Cursor;
 import android.os.Bundle;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.View;
 import android.view.Menu;
@@ -25,28 +21,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        NavHostFragment.findNavController(null)
-                                .navigate(R.id.action_FirstFragment_to_SecondFragment);
-                    }
-                });
-            }
-        });
-
-        //btnAddData = (Button)findViewById(R.id.button_add);
-        //btnviewAll = (Button)findViewById(R.id.button_viewAll);
 
         myDb = new AdressBookDb(this);
 
