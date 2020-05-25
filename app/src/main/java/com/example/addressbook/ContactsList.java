@@ -48,10 +48,13 @@ public class ContactsList extends Fragment {
         // Contacts ListView
         final ListView list = view.findViewById(R.id.list);
         ArrayList<String> arrayList = new ArrayList<>();
+        final ArrayList<String> arrayId = new ArrayList<>();
+
 
         if (cursor.moveToFirst() && cursor.getCount() > 0){
             do {
                 arrayList.add(cursor.getString(cursor.getColumnIndex("NAME")));
+                arrayId.add(cursor.getString(cursor.getColumnIndex("ID")));
             }while (cursor.moveToNext());
         }
         cursor.close();
@@ -62,7 +65,9 @@ public class ContactsList extends Fragment {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Navigation.findNavController(view).navigate(R.id.action_ContactsList_to_ContactDetails);
+                Bundle bundle = new Bundle();
+                bundle.putString("id", arrayId.get(position));
+                Navigation.findNavController(view).navigate(R.id.action_ContactsList_to_ContactDetails, bundle);
             }
         });
     }

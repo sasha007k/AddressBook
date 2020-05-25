@@ -65,7 +65,6 @@ public class AddressBookDb extends SQLiteOpenHelper {
                 , new String[] { id + " " });
 
         return  result;
-
     }
 
     public Integer deleteData(String id) {
@@ -92,7 +91,8 @@ public class AddressBookDb extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String[] projection = {
-                COL_2
+                COL_2,
+                "ID"
         };
 
 
