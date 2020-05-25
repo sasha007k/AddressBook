@@ -1,5 +1,7 @@
 package com.example.addressbook;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 
@@ -11,9 +13,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -50,7 +50,7 @@ public class ContactDetails extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         name= (TextInputEditText) view.findViewById(R.id.text_edit_name);
@@ -75,14 +75,28 @@ public class ContactDetails extends Fragment {
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                db.deleteData(id);
-                Navigation.findNavController(v).navigate(R.id.action_ContactDetails_to_ContactsList);
+            public void onClick(final View v) {
+
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Are You Sure?")
+                        .setMessage("This will permanently delete this contact.")
+
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                db.deleteData(id);
+                                Navigation.findNavController(v).navigate(R.id.action_ContactDetails_to_ContactsList);
+                            }
+                        })
+
+                        .setNegativeButton(android.R.string.no, null)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+
             }
         });
 
-        id = getArguments().getString("id");
 
+        id = getArguments().getString("id");
         getDetails();
     }
 
